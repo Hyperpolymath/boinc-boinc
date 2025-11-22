@@ -1,8 +1,23 @@
 # Oblibeny BOINC Platform
 
+[![RSR Level](https://img.shields.io/badge/RSR-Bronze-cd7f32)](RSR_COMPLIANCE.md)
+[![License](https://img.shields.io/badge/license-MIT%20%2B%20Palimpsest--0.8-blue)](LICENSE.txt)
+[![TPCF](https://img.shields.io/badge/TPCF-Perimeter%203-green)](CONTRIBUTING.md#tpcf)
+[![Security](https://img.shields.io/badge/security-RFC%209116-success)](.well-known/security.txt)
+
 > **The first programming language developed with the cooperation of a global supercomputer**
 
 Oblibeny is a revolutionary programming language that uses BOINC (Berkeley Open Infrastructure for Network Computing) to crowd-source formal verification of language properties through distributed computation.
+
+## RSR Compliance: Bronze Level ✅
+
+This project adheres to the [Rhodium Standard Repository (RSR)](RSR_COMPLIANCE.md) framework:
+- **Score**: 89/110 (81%)
+- **Level**: Bronze (certified)
+- **TPCF Perimeter**: 3 (Community Sandbox)
+- **Test Coverage**: Infrastructure ready (tests TODO)
+
+See [RSR_COMPLIANCE.md](RSR_COMPLIANCE.md) for detailed compliance report.
 
 ## Vision
 
@@ -30,7 +45,29 @@ Oblibeny combines:
 
 ## Quick Start
 
-### Using Nix (Recommended)
+### Using Just (Task Runner - Recommended)
+
+```bash
+# Show all available commands
+just
+
+# Validate RSR compliance
+just validate
+
+# Build all components
+just build
+
+# Run tests
+just test
+
+# Check RSR compliance status
+just rsr-status
+
+# Deploy locally
+just deploy-local
+```
+
+### Using Nix (Reproducible Builds)
 
 ```bash
 # Enter development environment

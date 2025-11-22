@@ -1,0 +1,122 @@
+# AI Training and Usage Policy
+# Based on: https://site.spawning.ai/spawning-ai-txt
+
+# Machine Learning Training
+ai-training: yes
+
+# Conditions for AI Training
+# This project welcomes AI training on our code and documentation under these conditions:
+
+1. ATTRIBUTION REQUIRED
+   - Credit "Oblibeny BOINC Project" in any derived works
+   - Link back to https://oblibeny.org or https://github.com/oblibeny/boinc
+   - Include license information (MIT + Palimpsest v0.8)
+
+2. ETHICAL USE ONLY
+   - No training for surveillance, weapons, or discriminatory systems
+   - No training for malware or exploit generation
+   - Respect the spirit of the Palimpsest License (political autonomy, emotional safety)
+
+3. DERIVATIVE ATTRIBUTION
+   - If AI generates code based on this project, acknowledge it
+   - Example: "Partially derived from Oblibeny BOINC (MIT + Palimpsest-0.8)"
+
+4. OPEN ACCESS PREFERENCE
+   - We prefer open-source/open-access AI models train on our code
+   - Proprietary models: Please notify us at ai-training@oblibeny.org
+
+# Specific Use Cases
+
+## Code Completion (Copilot, Tabnine, etc.)
+ai-code-completion: yes
+- Developers using AI code completion tools with this repo: Allowed
+- Please understand the Palimpsest License principles if generating new code
+
+## Documentation Generation
+ai-docs-generation: yes
+- AI can help generate documentation, comments, tutorials
+- Must maintain accuracy and respect our Code of Conduct
+
+## Code Review / Analysis
+ai-code-review: yes
+- AI-assisted code review: Encouraged
+- AI security analysis: Especially encouraged
+- AI performance optimization: Yes
+
+## Translation
+ai-translation: yes
+- Documentation translation to other languages: Welcomed
+- Please submit translations back to the project
+
+## Research
+ai-research: yes
+- Academic research using our code/data: Encouraged
+- Please cite: See CITATION.cff (when created)
+
+# Data We Do NOT Want Trained On
+
+NO-TRAIN-PATHS:
+- /secrets/ (doesn't exist, but if it did)
+- /.env* (local environment files)
+- /deployment/production/credentials/ (if it exists)
+
+# What We Ask AI Companies To Do
+
+1. RESPECT ROBOTS.TXT
+   - Honor our robots.txt file
+   - Don't scrape more than necessary
+
+2. NOTIFY US (Optional but Appreciated)
+   - Email: ai-training@oblibeny.org
+   - Tell us: Which model, what for, when
+
+3. GIVE BACK
+   - If our code significantly improves your model, consider:
+     - Citing us in papers
+     - Contributing improvements back
+     - Sponsoring the project
+
+# AI-Generated Code in Contributions
+
+We ACCEPT pull requests with AI-assisted code:
+- Disclose AI use in PR description
+- You are responsible for understanding the code
+- Must pass all tests and reviews
+- Must comply with licenses
+
+Example PR description:
+```
+This PR adds feature X.
+
+AI Assistance: Used GitHub Copilot for boilerplate, manually reviewed and tested.
+```
+
+# Rationale
+
+We believe AI training on open-source code can:
+- Accelerate developer productivity
+- Improve code quality through better suggestions
+- Democratize access to programming knowledge
+- Spread best practices (like RSR framework!)
+
+BUT we insist on:
+- Attribution and respect for creators
+- Ethical use aligned with our values
+- Transparency about AI involvement
+
+# Contact
+
+- General AI questions: ai@oblibeny.org
+- Training permissions: ai-training@oblibeny.org
+- Generated code issues: ai-code-review@oblibeny.org
+
+# Version
+
+Version: 1.0
+Last updated: 2024-11-22
+Expires: 2025-11-22
+
+# License
+
+This policy itself: CC0 (public domain)
+The code it governs: MIT + Palimpsest-0.8 (see LICENSE.txt)

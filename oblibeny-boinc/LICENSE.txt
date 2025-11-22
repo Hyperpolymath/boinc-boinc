@@ -1,0 +1,46 @@
+MIT License
+
+Copyright (c) 2024 Oblibeny BOINC Project Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+Palimpsest License v0.8
+
+In addition to the MIT License above, this work is also licensed under the
+Palimpsest License v0.8 for purposes of political autonomy and reversibility.
+
+Core Principles:
+
+1. REVERSIBILITY: All changes must be reversible within 48 hours
+2. ATTRIBUTION: Original authors must be credited in all derivatives
+3. EMOTIONAL SAFETY: No harassment, discrimination, or hostile communication
+4. DISTRIBUTED TRUST: No single point of failure in governance
+5. OFFLINE-FIRST: Must work without network connectivity
+6. POLITICAL AUTONOMY: No platform lock-in or corporate control
+
+Full text: https://palimpsest.license/v0.8
+
+By using this software, you agree to uphold these principles and the
+Tri-Perimeter Contribution Framework (TPCF) as specified in CONTRIBUTING.md.
+
+---
+
+SPDX-License-Identifier: MIT AND Palimpsest-0.8

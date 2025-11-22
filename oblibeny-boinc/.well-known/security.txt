@@ -1,0 +1,41 @@
+# Canonical URI: https://oblibeny.org/.well-known/security.txt
+# This file complies with RFC 9116: https://www.rfc-editor.org/rfc/rfc9116.html
+
+Contact: mailto:security@oblibeny.org
+Contact: https://oblibeny.org/security
+Expires: 2025-11-22T00:00:00.000Z
+Encryption: https://oblibeny.org/.well-known/pgp-key.txt
+Preferred-Languages: en, es, fr, de, ja, zh
+Canonical: https://oblibeny.org/.well-known/security.txt
+
+# Security Policy
+Policy: https://github.com/oblibeny/boinc/blob/main/SECURITY.md
+
+# Acknowledgments
+Acknowledgments: https://oblibeny.org/security/hall-of-fame
+
+# Response Timeline
+# - Critical: < 4 hours
+# - High: < 24 hours
+# - Medium: < 7 days
+# - Low: < 30 days
+
+# Coordinated Disclosure
+# We follow a 90-day coordinated disclosure timeline (negotiable)
+
+# Scope
+# In scope:
+# - Oblibeny BOINC platform (this repository)
+# - Rust parser and analyzer
+# - Elixir/OTP coordinator
+# - Deployment infrastructure
+# - BOINC integration
+
+# Out of scope:
+# - Third-party dependencies (report to upstream)
+# - Volunteer BOINC clients (report to BOINC project)
+# - Theoretical attacks without PoC
+# - Social engineering
+
+# Hiring
+Hiring: https://oblibeny.org/careers

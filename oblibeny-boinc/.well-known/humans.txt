@@ -1,0 +1,186 @@
+# humanstxt.org - Robots have robots.txt, we have humans.txt!
+
+/* TEAM */
+
+Project: Oblibeny BOINC Platform
+Site: https://oblibeny.org
+Location: Distributed (global)
+
+/* SITE */
+
+Last update: 2024-11-22
+Language: English
+Doctype: Markdown, Rust, Elixir, Lean 4
+IDE: VS Code, Emacs, Vim, Helix
+Version Control: Git
+Hosting: GitLab (primary), GitHub (mirror)
+
+/* THANKS */
+
+BOINC Project - Berkeley Open Infrastructure for Network Computing
+  The foundation that makes distributed verification possible
+  https://boinc.berkeley.edu
+
+Rust Programming Language
+  Memory safety without garbage collection
+  https://rust-lang.org
+
+Elixir & OTP
+  Fault-tolerant distributed systems
+  https://elixir-lang.org
+
+Lean 4 Theorem Prover
+  Making formal verification accessible
+  https://lean-lang.org
+
+ArangoDB
+  Multi-model database for graphs and documents
+  https://arangodb.com
+
+Nix Package Manager
+  Reproducible builds across platforms
+  https://nixos.org
+
+The RSR Framework Community
+  Standards for politically autonomous software
+  https://rhodium-standard.org
+
+Claude (Anthropic)
+  AI pair programming that built much of this infrastructure
+  https://anthropic.com
+
+pest Parser
+  Elegant PEG parsing for Rust
+  https://pest.rs
+
+The volunteer computing community
+  Millions of people donating CPU time to science
+  Thank you for making this possible
+
+/* CONTRIBUTORS */
+
+This project was built through autonomous development.
+See MAINTAINERS.md for current team.
+See git log for individual contributions.
+See CONTRIBUTING.md to join us!
+
+Hall of Fame: https://oblibeny.org/contributors
+
+/* SPECIAL THANKS */
+
+To everyone who:
+- Believed in politically autonomous software
+- Contributed to open source
+- Shared their computing resources via BOINC
+- Provided feedback and suggestions
+- Fixed bugs and improved documentation
+- Spread the word about the project
+
+Your support makes this possible.
+
+/* TECHNOLOGY STACK */
+
+Languages:
+  - Rust 1.75+ (parser, analyzer)
+  - Elixir 1.15+ (coordinator, OTP)
+  - Lean 4 (formal proofs)
+  - JavaScript (future Phoenix dashboard)
+
+Databases:
+  - ArangoDB 3.11+ (multi-model)
+
+Build Tools:
+  - Nix (reproducible builds)
+  - just (task runner)
+  - Cargo (Rust)
+  - Mix (Elixir)
+  - Lake (Lean)
+
+Infrastructure:
+  - Podman/Docker (containers)
+  - GitLab CI/CD (automation)
+  - Prometheus (metrics)
+  - Grafana (dashboards)
+
+/* STANDARDS */
+
+RSR Framework: Bronze level compliance
+TPCF Perimeter: 3 (Community Sandbox)
+License: MIT + Palimpsest v0.8
+Code of Conduct: Contributor Covenant + CCCP
+Security: RFC 9116 (security.txt)
+
+/* CONTACT */
+
+General: hello@oblibeny.org
+Security: security@oblibeny.org
+Code of Conduct: conduct@oblibeny.org
+Press: press@oblibeny.org
+
+/* SOCIAL */
+
+GitLab: https://gitlab.com/oblibeny/boinc
+GitHub: https://github.com/oblibeny/boinc
+Forum: https://forum.oblibeny.org
+Chat: https://chat.oblibeny.org
+Blog: https://blog.oblibeny.org
+
+/* ASCII ART */
+
+   ___  _     _ _ _
+  / _ \| |__ | (_) |__   ___ _ __  _   _
+ | | | | '_ \| | | '_ \ / _ \ '_ \| | | |
+ | |_| | |_) | | | |_) |  __/ | | | |_| |
+  \___/|_.__/|_|_|_.__/ \___|_| |_|\__, |
+                                   |___/
+  BOINC Platform for Distributed Verification
+
+  "The first programming language developed with
+   the cooperation of a global supercomputer"
+
+/* PHILOSOPHY */
+
+Reversibility: All changes can be undone
+Attribution: Credit those who came before
+Emotional Safety: No fear, only learning
+Distributed Trust: No single point of control
+Offline-First: Works without the cloud
+Political Autonomy: No platform lock-in
+
+/* FUN FACTS */
+
+- Built in a single extended autonomous AI session
+- ~100k tokens of Claude Code output
+- 60+ production files created
+- 5000+ lines of code
+- 10000+ lines of documentation
+- 0% test coverage (oops! TODO)
+- 100% belief in the vision
+
+/* QUOTES */
+
+"The best way to predict the future is to invent it."
+  - Alan Kay
+
+"If you want to go fast, go alone. If you want to go far, go together."
+  - African Proverb
+
+"Make it work, make it right, make it fast."
+  - Kent Beck
+
+"The only way to do great work is to love what you do."
+  - Steve Jobs
+
+/* END */
+
+                 .     .
+            .  .   . .
+        ╔═══════════════════╗
+        ║  THANK YOU FOR    ║
+        ║  VISITING OUR     ║
+        ║  REPOSITORY!      ║
+        ╚═══════════════════╝
+            .  .   . .
+                 .     .
+
+Join us in building a better programming language!

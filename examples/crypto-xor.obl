@@ -1,0 +1,68 @@
+;; Simple XOR Encryption for IoT
+;; Demonstrates bounded-time cryptographic operations
+
+(program crypto-xor
+  (resource-budget
+    (time-ms 5000)
+    (memory-bytes 1024))
+
+  ;; Deploy-time XOR encryption function
+  (defun-deploy xor-encrypt (data key) : (array uint8 128)
+    (let ((result (array uint8 128))
+          (data-len (array-length data))
+          (key-len (array-length key)))
+
+      (bounded-for i 0 data-len
+        (let ((key-index (mod i key-len))
+              (data-byte (array-get data i))
+              (key-byte (array-get key key-index)))
+          (array-set result i (bitwise-xor data-byte key-byte))))
+
+      result))
+
+  ;; Deploy-time function to rotate key
+  (defun-deploy rotate-key (key rotation) : (array uint8 16)
+    (let ((result (array uint8 16))
+          (key-len (array-length key)))
+
+      (bounded-for i 0 key-len
+        (let ((src-index (mod (+ i rotation) key-len))
+              (key-byte (array-get key src-index)))
+          (array-set result i key-byte)))
+
+      result))
+
+  ;; Deploy-time function for multi-round XOR
+  (defun-deploy multi-round-encrypt (data key rounds) : (array uint8 128)
+    (let ((result (array uint8 128))
+          (current-key (array uint8 16))
+          (temp-data (array uint8 128)))
+
+      ;; Copy input data
+      (bounded-for i 0 (array-length data)
+        (array-set temp-data i (array-get data i)))
+
+      ;; Copy initial key
+      (bounded-for i 0 (array-length key)
+        (array-set current-key i (array-get key i)))
+
+      ;; Perform rounds
+      (bounded-for round 0 rounds
+        ;; Encrypt with current key
+        (set temp-data (xor-encrypt temp-data current-key))
+
+        ;; Rotate key for next round
+        (set current-key (rotate-key current-key (+ round 1))))
+
+      temp-data))
+
+  ;; Deploy-time main function
+  (defun-deploy main (plaintext initial-key) : (array uint8 128)
+    (multi-round-encrypt plaintext initial-key 5)))
+
+;; Compile-time function to generate test vectors (not included in deployment)
+(defun-compile generate-test-data () : (array uint8 128)
+  (let ((data (array uint8 128)))
+    ;; This would use compile-time I/O to generate random data
+    ;; Not available in deployment
+    data))

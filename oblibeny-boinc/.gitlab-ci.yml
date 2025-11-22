@@ -1,0 +1,132 @@
+# GitLab CI/CD Pipeline for Oblibeny BOINC
+
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  RUST_VERSION: "1.75"
+  ELIXIR_VERSION: "1.15"
+  LEAN_VERSION: "4.0"
+
+# Rust Parser Tests
+test:rust:
+  stage: test
+  image: rust:${RUST_VERSION}
+  before_script:
+    - cd rust-parser
+    - cargo --version
+  script:
+    - cargo test --verbose
+    - cargo clippy -- -D warnings
+    - cargo fmt -- --check
+  cache:
+    paths:
+      - rust-parser/target/
+      - .cargo/
+
+# Elixir Coordinator Tests
+test:elixir:
+  stage: test
+  image: elixir:${ELIXIR_VERSION}
+  services:
+    - arangodb:latest
+  variables:
+    ARANGO_URL: "http://arangodb:8529"
+    ARANGO_DB: "oblibeny_test"
+    ARANGO_USER: "root"
+    ARANGO_PASSWORD: "test"
+    MIX_ENV: "test"
+  before_script:
+    - cd elixir-coordinator
+    - mix local.hex --force
+    - mix local.rebar --force
+    - mix deps.get
+  script:
+    - mix test
+    - mix format --check-formatted
+    - mix credo --strict
+  cache:
+    paths:
+      - elixir-coordinator/deps/
+      - elixir-coordinator/_build/
+
+# Lean 4 Proof Verification
+test:lean:
+  stage: test
+  image: leanprover/lean4:latest
+  before_script:
+    - cd lean-proofs
+  script:
+    - lake build
+  allow_failure: true # Proofs incomplete
+
+# Build Rust Parser
+build:rust:
+  stage: build
+  image: rust:${RUST_VERSION}
+  before_script:
+    - cd rust-parser
+  script:
+    - cargo build --release
+  artifacts:
+    paths:
+      - rust-parser/target/release/oblibeny
+    expire_in: 1 week
+  only:
+    - main
+    - tags
+
+# Build Elixir Release
+build:elixir:
+  stage: build
+  image: elixir:${ELIXIR_VERSION}-alpine
+  before_script:
+    - cd elixir-coordinator
+    - mix local.hex --force
+    - mix local.rebar --force
+    - mix deps.get
+  script:
+    - MIX_ENV=prod mix release
+  artifacts:
+    paths:
+      - elixir-coordinator/_build/prod/rel/
+    expire_in: 1 week
+  only:
+    - main
+    - tags
+
+# Deploy to Staging
+deploy:staging:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh-client rsync
+  script:
+    - echo "Deploying to staging..."
+    - rsync -avz --delete deployment/ staging:/opt/oblibeny/
+    - ssh staging "cd /opt/oblibeny && ./scripts/deploy/production.sh"
+  environment:
+    name: staging
+    url: https://staging.oblibeny.org
+  only:
+    - main
+  when: manual
+
+# Deploy to Production
+deploy:production:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh-client rsync
+  script:
+    - echo "Deploying to production..."
+    - rsync -avz --delete deployment/ production:/opt/oblibeny/
+    - ssh production "cd /opt/oblibeny && ./scripts/deploy/production.sh"
+  environment:
+    name: production
+    url: https://oblibeny.org
+  only:
+    - tags
+  when: manual

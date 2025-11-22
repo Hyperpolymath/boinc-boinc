@@ -1,0 +1,56 @@
+FROM elixir:1.15-alpine AS builder
+
+# Install build dependencies
+RUN apk add --no-cache build-base git
+
+# Prepare build directory
+WORKDIR /app
+
+# Install hex and rebar
+RUN mix local.hex --force && \
+    mix local.rebar --force
+
+# Copy mix files
+COPY mix.exs mix.lock ./
+COPY config config
+
+# Get dependencies
+RUN mix deps.get --only prod
+RUN MIX_ENV=prod mix deps.compile
+
+# Copy source
+COPY lib lib
+
+# Compile and build release
+RUN MIX_ENV=prod mix compile
+RUN MIX_ENV=prod mix release
+
+# Runtime stage
+FROM alpine:3.18
+
+RUN apk add --no-cache \
+    openssl \
+    ncurses-libs \
+    libstdc++
+
+WORKDIR /app
+
+# Copy release from builder
+COPY --from=builder /app/_build/prod/rel/coordinator ./
+
+# Create user
+RUN addgroup -g 1000 oblibeny && \
+    adduser -D -u 1000 -G oblibeny oblibeny && \
+    chown -R oblibeny:oblibeny /app
+
+USER oblibeny
+
+# Expose port
+EXPOSE 4000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+    CMD nc -z localhost 4000 || exit 1
+
+# Start coordinator
+CMD ["/app/bin/coordinator", "start"]

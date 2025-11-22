@@ -1,0 +1,195 @@
+(* Oblibeny v0.6 EBNF Grammar *)
+(* S-expression based language with phase separation *)
+
+(* ============================================ *)
+(* LEXICAL STRUCTURE *)
+(* ============================================ *)
+
+program = { form } ;
+
+form = number
+     | boolean
+     | string
+     | identifier
+     | list
+     ;
+
+list = "(" , { form } , ")" ;
+
+(* ============================================ *)
+(* LITERALS *)
+(* ============================================ *)
+
+number = integer | float ;
+
+integer = [ "-" ] , digit , { digit } ;
+
+float = [ "-" ] , digit , { digit } , "." , digit , { digit } , [ exponent ] ;
+
+exponent = ( "e" | "E" ) , [ "+" | "-" ] , digit , { digit } ;
+
+boolean = "true" | "false" ;
+
+string = '"' , { string_char } , '"' ;
+
+string_char = ? any character except '"' and '\' ?
+            | escape_sequence
+            ;
+
+escape_sequence = "\\" , ( '"' | "\\" | "n" | "r" | "t" ) ;
+
+identifier = ( letter | special_char ) , { letter | digit | special_char } ;
+
+letter = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j"
+       | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t"
+       | "u" | "v" | "w" | "x" | "y" | "z"
+       | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J"
+       | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T"
+       | "U" | "V" | "W" | "X" | "Y" | "Z"
+       ;
+
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
+special_char = "-" | "_" | "+" | "*" | "/" | "=" | "<" | ">" | "!" | "?" ;
+
+(* ============================================ *)
+(* DEPLOY-TIME CONSTRUCTS *)
+(* ============================================ *)
+
+defun_deploy = "(" , "defun-deploy" , identifier , param_list , type_annotation , { form } , ")" ;
+
+bounded_for = "(" , "bounded-for" , identifier , form , form , { form } , ")" ;
+
+with_capability = "(" , "with-capability" , form , { form } , ")" ;
+
+let_binding = "(" , "let" , binding_list , { form } , ")" ;
+
+binding_list = "(" , { binding } , ")" ;
+
+binding = "(" , identifier , form , ")" ;
+
+set_var = "(" , "set" , identifier , form , ")" ;
+
+if_expr = "(" , "if" , form , form , form , ")" ;
+
+(* ============================================ *)
+(* COMPILE-TIME CONSTRUCTS *)
+(* ============================================ *)
+
+defun_compile = "(" , "defun-compile" , identifier , param_list , type_annotation , { form } , ")" ;
+
+macro_def = "(" , "macro" , identifier , param_list , { form } , ")" ;
+
+eval_compile = "(" , "eval-compile" , form , ")" ;
+
+include_file = "(" , "include" , string , ")" ;
+
+for_loop = "(" , "for" , identifier , form , { form } , ")" ;
+
+while_loop = "(" , "while" , form , { form } , ")" ;
+
+(* ============================================ *)
+(* COMMON CONSTRUCTS *)
+(* ============================================ *)
+
+function_call = "(" , form , { form } , ")" ;
+
+param_list = "(" , { parameter } , ")" ;
+
+parameter = identifier | typed_param ;
+
+typed_param = "(" , identifier , type_expr , ")" ;
+
+type_annotation = [ ":" , type_expr ] ;
+
+type_expr = simple_type | array_type | capability_type ;
+
+simple_type = "int32" | "int64" | "uint32" | "uint64"
+            | "float32" | "float64"
+            | "bool" | "string"
+            ;
+
+array_type = "(" , "array" , type_expr , number , ")" ;
+
+capability_type = "(" , "capability" , resource_type , ")" ;
+
+resource_type = "uart-tx" | "uart-rx" | "gpio" | "i2c" | "spi"
+              | "sensor-read" | "network-send" | "network-recv"
+              ;
+
+(* ============================================ *)
+(* RESOURCE BUDGETS *)
+(* ============================================ *)
+
+resource_budget = "(" , "resource-budget" , { resource_spec } , ")" ;
+
+resource_spec = "(" , resource_kind , number , ")" ;
+
+resource_kind = "time-ms" | "memory-bytes" | "network-bytes" | "storage-bytes" ;
+
+(* ============================================ *)
+(* BUILT-IN OPERATIONS *)
+(* ============================================ *)
+
+(* Arithmetic *)
+arithmetic_op = "+" | "-" | "*" | "/" | "mod" ;
+
+(* Comparison *)
+comparison_op = "=" | "<" | ">" | "<=" | ">=" | "!=" ;
+
+(* Logical *)
+logical_op = "and" | "or" | "not" ;
+
+(* Bitwise *)
+bitwise_op = "bitwise-and" | "bitwise-or" | "bitwise-xor" | "bitwise-not" | "bit-shift-left" | "bit-shift-right" ;
+
+(* Array operations *)
+array_get = "(" , "array-get" , form , form , ")" ;
+
+array_set = "(" , "array-set" , form , form , form , ")" ;
+
+array_length = "(" , "array-length" , form , ")" ;
+
+(* I/O operations (capability-gated) *)
+gpio_set = "(" , "gpio-set" , form , form , ")" ;
+
+gpio_get = "(" , "gpio-get" , form , ")" ;
+
+uart_send = "(" , "uart-send" , form , form , ")" ;
+
+uart_recv = "(" , "uart-recv" , form , ")" ;
+
+sensor_read = "(" , "sensor-read" , form , ")" ;
+
+network_send = "(" , "network-send" , form , form , ")" ;
+
+network_recv = "(" , "network-recv" , form , ")" ;
+
+(* Time operations *)
+sleep_ms = "(" , "sleep-ms" , form , ")" ;
+
+timestamp = "(" , "timestamp" , ")" ;
+
+(* ============================================ *)
+(* PROGRAM STRUCTURE *)
+(* ============================================ *)
+
+program_def = "(" , "program" , identifier , resource_budget , { toplevel_form } , ")" ;
+
+toplevel_form = defun_deploy
+              | defun_compile
+              | macro_def
+              | defcap
+              ;
+
+defcap = "(" , "defcap" , identifier , param_list , string , ")" ;
+
+(* ============================================ *)
+(* WHITESPACE AND COMMENTS *)
+(* ============================================ *)
+
+whitespace = " " | "\t" | "\n" | "\r" ;
+
+comment = ";" , { ? any character except newline ? } , "\n" ;
+
+(* End of Grammar *)

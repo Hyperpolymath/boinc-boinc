@@ -1,0 +1,69 @@
+;; Temperature Monitoring System
+;; Reads temperature sensor periodically and sends data over network
+
+(program temp-monitor
+  (resource-budget
+    (time-ms 120000)
+    (memory-bytes 2048)
+    (network-bytes 1024))
+
+  ;; Define capabilities
+  (defcap temp-sensor (device) "Temperature sensor read capability")
+  (defcap network (device) "Network send capability")
+  (defcap status-led (pin) "Status LED GPIO capability")
+
+  ;; Deploy-time function to read and average temperature
+  (defun-deploy read-average-temp (sensor-cap samples) : int32
+    (let ((total 0)
+          (readings (array int32 10)))
+      (bounded-for i 0 samples
+        (let ((temp (with-capability sensor-cap
+                      (sensor-read sensor-cap))))
+          (array-set readings i temp)
+          (set total (+ total temp))
+          (sleep-ms 1000)))
+
+      ;; Return average
+      (/ total samples)))
+
+  ;; Deploy-time function to check if temperature is in safe range
+  (defun-deploy temp-in-range (temp min-temp max-temp) : bool
+    (and (>= temp min-temp)
+         (<= temp max-temp)))
+
+  ;; Deploy-time function to blink status LED
+  (defun-deploy blink-status (led-cap count) : void
+    (bounded-for i 0 count
+      (with-capability led-cap
+        (gpio-set led-cap 1)
+        (sleep-ms 100)
+        (gpio-set led-cap 0)
+        (sleep-ms 100))))
+
+  ;; Deploy-time function to send temperature report
+  (defun-deploy send-report (network-cap data) : void
+    (with-capability network-cap
+      (network-send network-cap data)))
+
+  ;; Deploy-time main monitoring loop
+  (defun-deploy main (sensor-cap network-cap led-cap) : void
+    (let ((min-safe 15)
+          (max-safe 30)
+          (samples 10)
+          (report (array int32 6)))
+
+      ;; Collect 6 temperature readings
+      (bounded-for reading 0 6
+        (let ((avg-temp (read-average-temp sensor-cap samples)))
+          ;; Store reading
+          (array-set report reading avg-temp)
+
+          ;; Blink LED based on temperature status
+          (if (temp-in-range avg-temp min-safe max-safe)
+              (blink-status led-cap 1)  ;; Normal: 1 blink
+              (blink-status led-cap 3)) ;; Warning: 3 blinks
+
+          (sleep-ms 5000)))
+
+      ;; Send accumulated report
+      (send-report network-cap report))))

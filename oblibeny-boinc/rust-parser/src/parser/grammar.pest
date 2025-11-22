@@ -1,0 +1,185 @@
+// Oblibeny v0.6 Pest Grammar
+// PEG parser for S-expression based language with phase separation
+
+WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
+COMMENT = _{ ";" ~ (!"\n" ~ ANY)* ~ "\n" }
+
+// === LITERALS ===
+
+integer = @{ "-"? ~ ASCII_DIGIT+ }
+float = @{ "-"? ~ ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT+ ~ (^"e" ~ ("+" | "-")? ~ ASCII_DIGIT+)? }
+boolean = @{ "true" | "false" }
+string = @{ "\"" ~ (!"\"" ~ ("\\" ~ ANY | ANY))* ~ "\"" }
+
+// === IDENTIFIERS ===
+
+ident = @{ (ASCII_ALPHA | special_char) ~ (ASCII_ALPHANUMERIC | special_char)* }
+special_char = _{ "-" | "_" | "+" | "*" | "/" | "=" | "<" | ">" | "!" | "?" }
+
+// === TYPES ===
+
+simple_type = @{
+    "int32" | "int64" | "uint32" | "uint64" |
+    "float32" | "float64" |
+    "bool" | "string" | "void"
+}
+
+array_type = { "(" ~ "array" ~ type_expr ~ integer ~ ")" }
+
+capability_type = { "(" ~ "capability" ~ resource_type ~ ")" }
+
+function_type = { "(" ~ "->" ~ type_expr* ~ type_expr ~ ")" }
+
+type_expr = { simple_type | array_type | capability_type | function_type }
+
+resource_type = @{
+    "uart-tx" | "uart-rx" | "gpio" | "i2c" | "spi" |
+    "sensor-read" | "network-send" | "network-recv"
+}
+
+// === PARAMETERS ===
+
+parameter = { "(" ~ ident ~ type_expr ~ ")" | ident }
+param_list = { "(" ~ parameter* ~ ")" }
+
+type_annotation = { ":" ~ type_expr }
+
+// === DEPLOY-TIME CONSTRUCTS ===
+
+defun_deploy = {
+    "(" ~ "defun-deploy" ~ ident ~ param_list ~ type_annotation? ~ form* ~ ")"
+}
+
+bounded_for = {
+    "(" ~ "bounded-for" ~ ident ~ form ~ form ~ form* ~ ")"
+}
+
+with_capability = {
+    "(" ~ "with-capability" ~ form ~ form* ~ ")"
+}
+
+// === COMPILE-TIME CONSTRUCTS ===
+
+defun_compile = {
+    "(" ~ "defun-compile" ~ ident ~ param_list ~ type_annotation? ~ form* ~ ")"
+}
+
+macro_def = {
+    "(" ~ "macro" ~ ident ~ param_list ~ form* ~ ")"
+}
+
+eval_compile = {
+    "(" ~ "eval-compile" ~ form ~ ")"
+}
+
+include_file = {
+    "(" ~ "include" ~ string ~ ")"
+}
+
+for_loop = {
+    "(" ~ "for" ~ ident ~ form ~ form* ~ ")"
+}
+
+while_loop = {
+    "(" ~ "while" ~ form ~ form* ~ ")"
+}
+
+// === COMMON CONSTRUCTS ===
+
+let_binding = {
+    "(" ~ "let" ~ binding_list ~ form* ~ ")"
+}
+
+binding_list = { "(" ~ binding* ~ ")" }
+binding = { "(" ~ ident ~ form ~ ")" }
+
+set_var = { "(" ~ "set" ~ ident ~ form ~ ")" }
+
+if_expr = { "(" ~ "if" ~ form ~ form ~ form ~ ")" }
+
+// === ARITHMETIC & LOGIC ===
+
+arithmetic_op = @{ "+" | "-" | "*" | "/" | "mod" }
+comparison_op = @{ "<=" | ">=" | "!=" | "=" | "<" | ">" }
+logical_op = @{ "and" | "or" | "not" }
+bitwise_op = @{
+    "bitwise-and" | "bitwise-or" | "bitwise-xor" |
+    "bitwise-not" | "bit-shift-left" | "bit-shift-right"
+}
+
+// === ARRAY OPERATIONS ===
+
+array_get = { "(" ~ "array-get" ~ form ~ form ~ ")" }
+array_set = { "(" ~ "array-set" ~ form ~ form ~ form ~ ")" }
+array_length = { "(" ~ "array-length" ~ form ~ ")" }
+array_literal = { "(" ~ "array" ~ type_expr ~ integer ~ ")" }
+
+// === I/O OPERATIONS ===
+
+gpio_set = { "(" ~ "gpio-set" ~ form ~ form ~ ")" }
+gpio_get = { "(" ~ "gpio-get" ~ form ~ ")" }
+
+uart_send = { "(" ~ "uart-send" ~ form ~ form ~ ")" }
+uart_recv = { "(" ~ "uart-recv" ~ form ~ ")" }
+
+sensor_read = { "(" ~ "sensor-read" ~ form ~ ")" }
+
+network_send = { "(" ~ "network-send" ~ form ~ form ~ ")" }
+network_recv = { "(" ~ "network-recv" ~ form ~ ")" }
+
+sleep_ms = { "(" ~ "sleep-ms" ~ form ~ ")" }
+timestamp = { "(" ~ "timestamp" ~ ")" }
+
+// === RESOURCE BUDGETS ===
+
+resource_budget = {
+    "(" ~ "resource-budget" ~ resource_spec* ~ ")"
+}
+
+resource_spec = { "(" ~ resource_kind ~ integer ~ ")" }
+
+resource_kind = @{
+    "time-ms" | "memory-bytes" | "network-bytes" | "storage-bytes"
+}
+
+// === CAPABILITIES ===
+
+defcap = {
+    "(" ~ "defcap" ~ ident ~ param_list ~ string ~ ")"
+}
+
+// === PROGRAM STRUCTURE ===
+
+program = {
+    "(" ~ "program" ~ ident ~ resource_budget ~ toplevel_form* ~ ")"
+}
+
+toplevel_form = {
+    defun_deploy | defun_compile | macro_def | defcap
+}
+
+// === FUNCTION CALLS ===
+
+function_call = { "(" ~ form ~ form* ~ ")" }
+
+// === FORMS (EXPRESSIONS) ===
+
+list = {
+    defun_deploy | defun_compile | macro_def | eval_compile |
+    bounded_for | for_loop | while_loop |
+    with_capability | let_binding | set_var | if_expr |
+    array_get | array_set | array_length | array_literal |
+    gpio_set | gpio_get | uart_send | uart_recv |
+    sensor_read | network_send | network_recv |
+    sleep_ms | timestamp |
+    include_file | defcap | program |
+    function_call
+}
+
+atom = { integer | float | boolean | ident }
+
+form = { list | atom | string }
+
+// === TOP LEVEL ===
+
+file = { SOI ~ form* ~ EOI }

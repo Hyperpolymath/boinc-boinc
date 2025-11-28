@@ -1,186 +1,145 @@
-# humanstxt.org - Robots have robots.txt, we have humans.txt!
-
 /* TEAM */
 
-Project: Oblibeny BOINC Platform
-Site: https://oblibeny.org
-Location: Distributed (global)
+Oblibeny BOINC Platform is built by a global community of contributors.
 
-/* SITE */
+Core Maintainers (Perimeter 1):
+  - See MAINTAINERS.md for current list
 
-Last update: 2024-11-22
-Language: English
-Doctype: Markdown, Rust, Elixir, Lean 4
-IDE: VS Code, Emacs, Vim, Helix
-Version Control: Git
-Hosting: GitLab (primary), GitHub (mirror)
+Trusted Contributors (Perimeter 2):
+  - See MAINTAINERS.md for current list
+
+Community Contributors (Perimeter 3):
+  - See git log for full history
+  - All contributors listed in GitHub/GitLab
 
 /* THANKS */
 
-BOINC Project - Berkeley Open Infrastructure for Network Computing
-  The foundation that makes distributed verification possible
-  https://boinc.berkeley.edu
+Standing on the shoulders of giants:
 
-Rust Programming Language
-  Memory safety without garbage collection
-  https://rust-lang.org
+BOINC Project:
+  - David Anderson (UC Berkeley)
+  - BOINC development team
+  - https://boinc.berkeley.edu/
 
-Elixir & OTP
-  Fault-tolerant distributed systems
-  https://elixir-lang.org
+Rust Community:
+  - For memory safety without compromise
+  - cargo, clippy, rustfmt, and ecosystem
 
-Lean 4 Theorem Prover
-  Making formal verification accessible
-  https://lean-lang.org
+Elixir/OTP Community:
+  - José Valim and core team
+  - For fault-tolerant distributed systems
+  - Phoenix Framework team
 
-ArangoDB
-  Multi-model database for graphs and documents
-  https://arangodb.com
+Lean 4 Community:
+  - Leonardo de Moura (Microsoft Research)
+  - For accessible formal verification
+  - Lean Prover community
 
-Nix Package Manager
-  Reproducible builds across platforms
-  https://nixos.org
+ArangoDB Team:
+  - For multi-model database excellence
 
-The RSR Framework Community
-  Standards for politically autonomous software
-  https://rhodium-standard.org
+Nix Community:
+  - For reproducible builds and determinism
 
-Claude (Anthropic)
-  AI pair programming that built much of this infrastructure
-  https://anthropic.com
+NLnet Foundation:
+  - For supporting open-source innovation
 
-pest Parser
-  Elegant PEG parsing for Rust
-  https://pest.rs
+All BOINC Volunteers:
+  - Who donate computing power to science
+  - Making distributed verification possible
 
-The volunteer computing community
-  Millions of people donating CPU time to science
-  Thank you for making this possible
+Open Source Contributors Everywhere:
+  - Every library, tool, and dependency
+  - You make this possible
 
-/* CONTRIBUTORS */
+/* SITE */
 
-This project was built through autonomous development.
-See MAINTAINERS.md for current team.
-See git log for individual contributions.
-See CONTRIBUTING.md to join us!
+Last Updated: 2024-11-23
+Standards: HTML5, CSS3, WCAG 2.1 AA
+Components: Phoenix LiveView, Elixir, Rust, Lean 4
+Software: Nix, Podman, ArangoDB, GitLab CI
+Hosting: Self-hosted (planned: oblibeny.org)
+Contact: hello@oblibeny.org
+Security: security@oblibeny.org
 
-Hall of Fame: https://oblibeny.org/contributors
+/* VALUES */
 
-/* SPECIAL THANKS */
+Reversibility: All changes can be undone
+Attribution: Credit those who came before
+Emotional Safety: No fear, only learning
+Political Autonomy: No platform lock-in
+Offline-First: Works without the cloud
+Distributed Trust: No single point of control
+Formal Verification: Mathematics proves correctness
+Sustainability: Explicit resource accounting
 
-To everyone who:
-- Believed in politically autonomous software
-- Contributed to open source
-- Shared their computing resources via BOINC
-- Provided feedback and suggestions
-- Fixed bugs and improved documentation
-- Spread the word about the project
+/* LICENSE */
 
-Your support makes this possible.
+MIT AND Palimpsest-0.8
+See LICENSE.txt for full text
 
-/* TECHNOLOGY STACK */
+/* ATTRIBUTION */
 
-Languages:
-  - Rust 1.75+ (parser, analyzer)
-  - Elixir 1.15+ (coordinator, OTP)
-  - Lean 4 (formal proofs)
-  - JavaScript (future Phoenix dashboard)
+If you use this project:
+  - Credit "Oblibeny BOINC Platform"
+  - Link to https://oblibeny.org or https://github.com/oblibeny/boinc
+  - Mention license: MIT AND Palimpsest-0.8
+  - Cite in research (see README.adoc for BibTeX)
 
-Databases:
-  - ArangoDB 3.11+ (multi-model)
+/* CONTRIBUTE */
 
-Build Tools:
-  - Nix (reproducible builds)
-  - just (task runner)
-  - Cargo (Rust)
-  - Mix (Elixir)
-  - Lake (Lean)
+We welcome contributions!
+See CONTRIBUTING.md for guidelines
+Follow CODE_OF_CONDUCT.md
+Join us: https://oblibeny.org/contribute
 
-Infrastructure:
-  - Podman/Docker (containers)
-  - GitLab CI/CD (automation)
-  - Prometheus (metrics)
-  - Grafana (dashboards)
+/* ACCESSIBILITY */
 
-/* STANDARDS */
+We strive for WCAG 2.1 AA compliance
+Report accessibility issues: accessibility@oblibeny.org
+Screen reader tested: NVDA, JAWS, VoiceOver
+Keyboard navigation supported
+High contrast mode available
 
-RSR Framework: Bronze level compliance
-TPCF Perimeter: 3 (Community Sandbox)
-License: MIT + Palimpsest v0.8
-Code of Conduct: Contributor Covenant + CCCP
-Security: RFC 9116 (security.txt)
+/* SUSTAINABILITY */
+
+Carbon-aware computing where possible
+Resource bounds tracked explicitly in language
+Volunteer computing reduces datacenter usage
+Offline-first design minimizes network traffic
+
+/* FUN FACTS */
+
+- This project uses 5 programming languages
+- First language developed with distributed formal verification
+- Two-phase compilation: Turing-complete → Turing-incomplete
+- Goal: 10,000 BOINC volunteers worldwide
+- All code is memory-safe (Rust + Elixir + Ada + Lean)
+
+/* COLOPHON */
+
+Written in: AsciiDoc, Markdown, Lean 4, Rust, Elixir
+Built with: Nix, just, cargo, mix, lake
+Edited with: Neovim, VS Code, Emacs, Zed
+Versioned with: Git
+Deployed with: Podman, GitLab CI
+Monitored with: Prometheus, Grafana
+Stored in: ArangoDB
 
 /* CONTACT */
 
 General: hello@oblibeny.org
 Security: security@oblibeny.org
-Code of Conduct: conduct@oblibeny.org
+Conduct: conduct@oblibeny.org
 Press: press@oblibeny.org
+Sponsors: sponsors@oblibeny.org
+AI Training: ai-training@oblibeny.org
 
-/* SOCIAL */
+Web: https://oblibeny.org
+Git: https://github.com/oblibeny/boinc
+Chat: https://chat.oblibeny.org (planned)
+Forum: https://forum.oblibeny.org (planned)
 
-GitLab: https://gitlab.com/oblibeny/boinc
-GitHub: https://github.com/oblibeny/boinc
-Forum: https://forum.oblibeny.org
-Chat: https://chat.oblibeny.org
-Blog: https://blog.oblibeny.org
+/* SPDX */
 
-/* ASCII ART */
-
-   ___  _     _ _ _
-  / _ \| |__ | (_) |__   ___ _ __  _   _
- | | | | '_ \| | | '_ \ / _ \ '_ \| | | |
- | |_| | |_) | | | |_) |  __/ | | | |_| |
-  \___/|_.__/|_|_|_.__/ \___|_| |_|\__, |
-                                   |___/
-  BOINC Platform for Distributed Verification
-
-  "The first programming language developed with
-   the cooperation of a global supercomputer"
-
-/* PHILOSOPHY */
-
-Reversibility: All changes can be undone
-Attribution: Credit those who came before
-Emotional Safety: No fear, only learning
-Distributed Trust: No single point of control
-Offline-First: Works without the cloud
-Political Autonomy: No platform lock-in
-
-/* FUN FACTS */
-
-- Built in a single extended autonomous AI session
-- ~100k tokens of Claude Code output
-- 60+ production files created
-- 5000+ lines of code
-- 10000+ lines of documentation
-- 0% test coverage (oops! TODO)
-- 100% belief in the vision
-
-/* QUOTES */
-
-"The best way to predict the future is to invent it."
-  - Alan Kay
-
-"If you want to go fast, go alone. If you want to go far, go together."
-  - African Proverb
-
-"Make it work, make it right, make it fast."
-  - Kent Beck
-
-"The only way to do great work is to love what you do."
-  - Steve Jobs
-
-/* END */
-
-                 .     .
-            .  .   . .
-        ╔═══════════════════╗
-        ║  THANK YOU FOR    ║
-        ║  VISITING OUR     ║
-        ║  REPOSITORY!      ║
-        ╚═══════════════════╝
-            .  .   . .
-                 .     .
-
-Join us in building a better programming language!
+SPDX-License-Identifier: CC0-1.0

@@ -1,0 +1,142 @@
+# Oblibeny BOINC Platform - Funding Information
+#
+# This file defines funding sources for the project in accordance with
+# RSR (Rhodium Standard Repository) transparency requirements.
+#
+# Financial Principles:
+# 1. No single funding source exceeds 50% of annual budget
+# 2. All transactions > $100 disclosed publicly
+# 3. Monthly financial reports published
+# 4. Contributor stipends prioritized over infrastructure
+# 5. Solidarity economics framework (mutual aid over venture capital)
+
+# Individual Donations (Preferred)
+liberapay: oblibeny
+open_collective: oblibeny
+# ko_fi: oblibeny
+# patreon: oblibeny
+
+# Crypto Donations (Ethereum - for censorship-resistant funding)
+# eth: 0x0000000000000000000000000000000000000000  # TODO: Set up multi-sig wallet
+
+# Organizational Sponsorships (via GitHub Sponsors)
+github: [oblibeny]
+
+# Custom Funding URLs
+custom:
+  - https://opencollective.com/oblibeny
+  - https://liberapay.com/oblibeny/donate
+  - https://oblibeny.org/donate
+
+# Grant Information
+# Grants are disclosed in quarterly transparency reports:
+# - Funding source and amount
+# - Scope and deliverables
+# - Restrictions (if any)
+# - Progress reports
+#
+# Current Grants: None (project is bootstrapped)
+# Applied Grants:
+#   - NLnet Foundation (applied 2024-Q4)
+#   - Sovereign Tech Fund (planned 2025-Q1)
+#   - Mozilla Open Source Support (planned 2025-Q2)
+
+# Sponsorship Tiers
+#
+# 🥉 Bronze Supporter ($10/month)
+#    - Name in FUNDING.md
+#    - Supporter badge
+#
+# 🥈 Silver Sponsor ($50/month)
+#    - All Bronze benefits
+#    - Logo in README.adoc
+#    - Priority support (best-effort)
+#
+# 🥇 Gold Sponsor ($250/month)
+#    - All Silver benefits
+#    - Quarterly video call with maintainers
+#    - Input on roadmap (not control)
+#
+# 💎 Platinum Sponsor ($1000/month)
+#    - All Gold benefits
+#    - Dedicated support SLA
+#    - Custom integration assistance
+#    - Early access to releases (7 days)
+#
+# 🏆 Founding Sponsor ($5000+)
+#    - All Platinum benefits
+#    - Permanent recognition in FUNDING.md
+#    - Advisory board seat (non-voting)
+#
+# Note: No sponsor can influence project direction, license, or
+# governance. All sponsorship is charitable donation, not investment.
+
+# Financial Transparency
+#
+# Monthly Reports: https://opencollective.com/oblibeny/transactions
+# Annual Audit: https://oblibeny.org/reports/annual-audit-{year}.pdf
+# Budget Proposals: https://github.com/oblibeny/boinc/issues?q=label:budget
+#
+# Current Financial Status (2024-11):
+#   Revenue (YTD): $0
+#   Expenses (YTD): $0 (volunteer-run)
+#   Reserves: $0
+#   Burn Rate: $0/month
+#
+# Projected Budget (2025):
+#   Infrastructure: $1,200/year (servers, DNS, CI/CD)
+#   Security Audits: $5,000/year
+#   Contributor Stipends: $10,000/year
+#   Conference Travel: $3,000/year
+#   Legal/Compliance: $1,000/year
+#   Total: $20,200/year (~$1,700/month)
+
+# Solidarity Economics
+#
+# We practice mutual aid and reject extractive funding models:
+#   ✅ Individual donations
+#   ✅ Public grants (NLnet, STF, Mozilla, etc.)
+#   ✅ Ethical sponsorships (with no strings attached)
+#   ✅ Consulting/support contracts (if project needs)
+#   ❌ Venture capital
+#   ❌ Extractive loans
+#   ❌ Surveillance capitalism partnerships
+#   ❌ Military/police contracts
+#
+# See GOVERNANCE.adoc for financial decision-making process.
+
+# How Funds Are Used
+#
+# Priority 1: Security & Infrastructure (30%)
+#   - Third-party security audits
+#   - Server hosting (BOINC, ArangoDB, CI/CD)
+#   - Domain names and SSL certificates
+#   - Backup and disaster recovery
+#
+# Priority 2: Contributor Stipends (40%)
+#   - Maintainer stipends ($500-2000/month per person)
+#   - Bounties for critical features/bugs
+#   - Travel to conferences for project representation
+#
+# Priority 3: Community & Outreach (20%)
+#   - Conference sponsorships
+#   - Marketing materials
+#   - Community events
+#   - Merchandise (stickers, t-shirts at cost)
+#
+# Priority 4: Legal & Compliance (10%)
+#   - Trademark registration
+#   - License compliance audits
+#   - Incorporation costs (if needed)
+#   - Insurance (if needed)
+
+# Contact
+#
+# Financial Questions: treasury@oblibeny.org
+# Sponsorship Inquiries: sponsors@oblibeny.org
+# General: hello@oblibeny.org
+#
+# PGP Key: https://oblibeny.org/.well-known/pgp-key.txt
+
+# SPDX-License-Identifier: CC0-1.0
+# This funding file is public domain for maximum reusability

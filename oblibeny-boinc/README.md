@@ -220,7 +220,7 @@ oblibeny-boinc/
 
 ### Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) or [CONTRIBUTING.adoc](CONTRIBUTING.adoc) for guidelines (both formats available).
 
 ## Documentation
 
@@ -246,7 +246,18 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
-GPL-3.0-or-later
+Dual-licensed under:
+- **MIT License** - Permissive, allows commercial use
+- **Palimpsest License v0.8** - Adds ethical constraints for politically autonomous software
+
+**SPDX-License-Identifier**: `MIT AND Palimpsest-0.8`
+
+You may choose:
+- MIT for permissive use
+- GPL-3.0-or-later for copyleft projects (compatible option)
+- MIT + Palimpsest-0.8 for politically autonomous software (**philosophically encouraged**)
+
+See [LICENSE.txt](LICENSE.txt) for full text.
 
 ## Citations
 
